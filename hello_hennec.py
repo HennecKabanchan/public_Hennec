@@ -73,4 +73,4 @@ async def on_message(message):
             print("NameErrorだよー:", err)
             await message.channel.send(f"{message.author.mention} : {hen_func.random.choice(fennec_text.err_mes)}")
 
-client.run("TOKEN")
+client.run("TOKENを入力してね")
