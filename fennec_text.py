@@ -111,7 +111,7 @@ TIRED_MES = [
 ]
 
 WELCOME_BACK_MES = [
-
+    "ただいまー\nジャパリまんでも食べようかなー"
 ]
 
 
