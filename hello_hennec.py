@@ -13,9 +13,9 @@ client = discord.Client()
 
 
 # test_hennec TOKEN
-# BOT_TOKEN = "みちゃだめ"
+# BOT_TOKEN = "NzUxNDMyMDE1NDMzMTcxMDY1.X1I_mQ.chRAjOVAZcMFtf2B85BlnpASPoU"
 # Hello_hennec TOKEN
-BOT_TOKEN = "みちゃだめ"
+BOT_TOKEN = "NTYwODk3MDY3NDAxMjE2MDAx.XJ0WGQ.E39b-lyHAwv2yuwGOVGCqKibPik"
 
 
 # 反応する言葉群
