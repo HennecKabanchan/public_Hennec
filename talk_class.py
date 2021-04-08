@@ -43,6 +43,13 @@ class Talk():
     def welcome_back_talk(self):
         return self.talk(f"{random.choice(fennec_text.WELCOME_BACK_MES)}")
 
+    def energy_talk(self):
+        return self.talk(f"{random.choice(fennec_text.ENERGY_MES)}")
+
+    def what_time_talk(self):
+        self.time_now = dt.now(timezone("Asia/Tokyo")).time()
+        return self.talk(f"えーとねー\n今は{self.time_now}だよー")
+
 
 # 挨拶のためのクラス
 class Greet(Talk):
@@ -138,7 +145,7 @@ class Greet(Talk):
         # 1時から3時;bad time:bt
         elif Greet.BAD_TIME <= self.time_now and self.time_now < Greet.EARLY_MORNING:
             if "gm" == self.wtgreet(self.mes.content):
-                return self.talk(f"おやおやー？{author_name}だよー 今は{self.time_now.strftime('%H:%M')}だねー\n{random.choice(Greet.M_GREETS['bt'])}")
+                return self.talk(f"おやおやー？{author_name}だねー 今は{self.time_now.strftime('%H:%M')}だねー\n{random.choice(Greet.M_GREETS['bt'])}")
             elif "he" == self.wtgreet(self.mes.content):
                 return self.talk(f"あらあらー？{author_name}だー 今は{self.time_now.strftime('%H:%M')}だよー\n{random.choice(Greet.H_GREETS['bt'])}")
             elif "ge" == self.wtgreet(self.mes.content):

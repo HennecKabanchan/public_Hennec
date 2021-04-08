@@ -12,9 +12,6 @@ import discord
 client = discord.Client()
 
 
-# test_hennec TOKEN
-# BOT_TOKEN = "みちゃだめ"
-# Hello_hennec TOKEN
 BOT_TOKEN = "みちゃだめ"
 
 
@@ -25,13 +22,19 @@ class Res_words():
     DX3 = r"/hx"
     DICE = r"/h \d*[dDｄＤ]\d+"
     FACTIONAL_AND_NUM = r"!|[0-9]+"
-    GREETS = r"おは|こんにち|ばん|おやす|こんち|きげん|機嫌|ちょうし|調子|げんき|元気"
+
+    START_MUSIC = r"/hm p"
+    DC_MUSIC = r"/hm dc"
+
+    GREETS = r"おは|こんにち|ばん|おやす|こんち|きげん|機嫌|ちょうし|調子"
     BYE = r"ばい|さよ"
-    HENNEC = r"へねっく|ヘネック|へネック|ふぇねっく|フェネック"
+    HENNEC = r"ヘねっく|へねっく|ヘネック|へネック|ふぇねっく|フェネック"
     BARK = r"こゃーん"
     ARAISAN = r"アライ"
     TIRED = r"つか"
     WELCOME_BACK = r"おかえり"
+    ENERGY = r"げんき|元気"
+    WHAT_TIME = r"なんじ|何時"
 
 
 @client.event
@@ -66,15 +69,32 @@ async def on_message(message):
                 print("DX3")
                 dx3d = dice_class.DX3(h_command)
                 dx3_mes = Talk(message)
-                await dx3_mes.talk(f"`DX3({h_command})` = {dx3d.format_dice[0]} = **{dx3d.format_dice[1]}**")
+                await dx3_mes.talk(f"`DX3({dx3d.dices})` = {dx3d.format_dice[0]} = **{dx3d.format_dice[1]}**")
 
             # 普通のダイス計算
             elif re.match(Res_words.DICE, h_command) or re.search(Res_words.FACTIONAL_AND_NUM, h_command):
                 print("dice")
                 dice = dice_class.Ndn(h_command)
-                # "の中に"を使うことができないため'を使用する
                 dice_mes = Talk(message)
+                # "の中に"を使うことができないため'を使用する
                 await dice_mes.talk(f" `{dice.dices}` = {dice.format_dice} = **{eval(dice.format_dice.replace('^', '**'))}**")
+
+            # 音楽かけるよ
+            elif re.match(Res_words.START_MUSIC, h_command):
+                print("connect voice channel")
+                if message.author.voice is None:
+                    await message.channel.send("ボイスチャンネルに接続してねー")
+                    return
+                await message.author.voice.channel.connect()
+                message.guild.voice_client.play(
+                    discord.FFmpegPCMAudio("test.mp3"))
+
+            # チャンネルから切断
+            elif re.match(Res_words.DC_MUSIC, h_command):
+                print("disconnect voice channel")
+                if message.guild.voice_client is None:
+                    return
+                await message.guild.voice_client.disconnect()
 
             # しゃべるへねっく
             elif re.search(Res_words.GREETS, h_command):
@@ -112,6 +132,16 @@ async def on_message(message):
                 print("おかえり")
                 welcome_back = Talk(message)
                 await welcome_back.tired_talk()
+
+            elif re.search(Res_words.ENERGY, h_command):
+                print("げんき")
+                energy = Talk(message)
+                await energy.energy_talk()
+
+            elif re.search(Res_words.WHAT_TIME, h_command):
+                print("何時？")
+                what_time = Talk(message)
+                await what_time.what_time_talk()
 
             else:
                 print("else")
