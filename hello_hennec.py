@@ -12,7 +12,7 @@ import discord
 client = discord.Client()
 
 
-BOT_TOKEN = "みちゃだめ"
+BOT_TOKEN = "NTYwODk3MDY3NDAxMjE2MDAx.XJ0WGQ.oxND_r90mMiEqT6cSC_16cibjE4"
 
 
 # 反応する言葉群
@@ -131,7 +131,7 @@ async def on_message(message):
             elif re.search(Res_words.WELCOME_BACK, h_command):
                 print("おかえり")
                 welcome_back = Talk(message)
-                await welcome_back.tired_talk()
+                await welcome_back.welcome_back_talk()
 
             elif re.search(Res_words.ENERGY, h_command):
                 print("げんき")
