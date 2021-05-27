@@ -9,5 +9,6 @@
 ![Hello_hennec](https://i.imgur.com/USLq0KX.png)
 - sidekickっていうダイスBotと大体同じなのだ
 - 挨拶とかすると返してくれるのだ！やっぱりへねっくはかしこいのだ！
-## 作った人
+## つくったふれんず
 - https://twitter.com/kab_chan386
+- https://twitter.com/dailyworkisan
